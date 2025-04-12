@@ -7,7 +7,7 @@ import { FormUtils } from '@utils/form-utils';
 
 @Component({
   selector: 'app-register-page',
-  imports: [RouterLink, ReactiveFormsModule, JsonPipe],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './register-page.component.html',
 })
 export class RegisterPageComponent {

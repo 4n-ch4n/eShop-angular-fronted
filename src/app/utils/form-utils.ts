@@ -2,6 +2,7 @@ import { FormGroup, ValidationErrors } from "@angular/forms";
 
 export class FormUtils {
   static passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+  static slugPattern = '^[a-z0-9_]+(?:-[a-z0-9_]+)*$';
 
   static getTextError(errors: ValidationErrors): string | null {
     for (const key of Object.keys(errors)) {
@@ -16,8 +17,10 @@ export class FormUtils {
           return 'Email format not valid';
 
         case 'pattern':
-          return 'The password must have a Uppercase, lowercase letter and a number';
+          if (errors['pattern'].requiredPattern === FormUtils.passwordPattern)
+            return 'The password must have a Uppercase, lowercase letter and a number';
 
+          return 'Pattern error with regex';
 
         default:
           return 'Error of validation not controlled';
