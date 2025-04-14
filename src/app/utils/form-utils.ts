@@ -1,7 +1,7 @@
 import { FormGroup, ValidationErrors } from "@angular/forms";
 
 export class FormUtils {
-  static passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+  static passwordPattern = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$';
   static slugPattern = '^[a-z0-9_]+(?:-[a-z0-9_]+)*$';
 
   static getTextError(errors: ValidationErrors): string | null {
@@ -19,6 +19,9 @@ export class FormUtils {
         case 'pattern':
           if (errors['pattern'].requiredPattern === FormUtils.passwordPattern)
             return 'The password must have a Uppercase, lowercase letter and a number';
+
+          if (errors['pattern'].requiredPattern === FormUtils.slugPattern)
+            return 'The slug cannot contain spaces';
 
           return 'Pattern error with regex';
 
